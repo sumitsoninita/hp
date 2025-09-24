@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-4 max-w-md">
-              HP&apos;s Fund for Future initiative is dedicated to nurturing the next generation of innovators and entrepreneurs. 
+              HP&#39;s Fund for Future initiative is dedicated to nurturing the next generation of innovators and entrepreneurs. 
               We provide seed funding, mentorship, and resources to help students turn their ideas into reality.
             </p>
             <div className="flex space-x-3">

@@ -216,7 +216,7 @@ export default function LoginPage() {
           {/* Footer */}
           <div className="text-center">
             <p className="text-blue-100 text-sm">
-              Don't have an account?{' '}
+              Don&#39;t have an account?{' '}
               <Link 
                 href={ROUTES.REGISTER} 
                 className="font-semibold text-white hover:text-blue-200 transition-colors duration-300 underline decoration-blue-400 hover:decoration-white"

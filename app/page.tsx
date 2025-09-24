@@ -41,7 +41,7 @@ export default function HomePage() {
               Fueling Dreams <span className="text-blue-400">Beyond Boundaries</span>
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              HP India&apos;s &apos;Fund for Future&apos; is empowering the next generation of innovators from Tier 2 & 3 colleges to build the future.
+              HP India&#39;s &#39;Fund for Future&#39; is empowering the next generation of innovators from Tier 2 & 3 colleges to build the future.
             </p>
             <div className="flex justify-center space-x-4">
               <Link 
@@ -147,7 +147,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">Tier 2 & 3 Focus</h3>
-                <p className="text-gray-600">Creating a level playing field for talented students across India's smaller cities.</p>
+                <p className="text-gray-600">Creating a level playing field for talented students across India&#39;s smaller cities.</p>
               </div>
               
               <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
@@ -157,7 +157,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">Expert Mentorship</h3>
-                <p className="text-gray-600">Guidance from HP's industry leaders and startup ecosystem experts.</p>
+                <p className="text-gray-600">Guidance from HP&#39;s industry leaders and startup ecosystem experts.</p>
               </div>
             </div>
 
@@ -189,7 +189,7 @@ export default function HomePage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-slate-900 mb-4">Initiative Details</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Learn more about HP India's commitment to fostering innovation and entrepreneurship across India.
+                Learn more about HP India&#39;s commitment to fostering innovation and entrepreneurship across India.
               </p>
             </div>
             
@@ -197,7 +197,7 @@ export default function HomePage() {
               <div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-6">Our Mission</h3>
                 <p className="text-gray-600 mb-6">
-                  HP India's Fund for Future Initiative aims to bridge the gap between talent and opportunity by providing 
+                  HP India&#39;s Fund for Future Initiative aims to bridge the gap between talent and opportunity by providing 
                   comprehensive support to innovative students from Tier 2 & 3 colleges across India.
                 </p>
                 <div className="space-y-4">
@@ -211,7 +211,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-start">
                     <CheckmarkIcon />
-                    <span className="ml-3 text-gray-700">Access to HP's technology resources</span>
+                    <span className="ml-3 text-gray-700">Access to HP&#39;s technology resources</span>
                   </div>
                   <div className="flex items-start">
                     <CheckmarkIcon />
@@ -425,7 +425,7 @@ export default function HomePage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-slate-900 mb-4">Success Stories</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Hear from entrepreneurs who have transformed their ideas into successful ventures with HP's support.
+                Hear from entrepreneurs who have transformed their ideas into successful ventures with HP&#39;s support.
               </p>
             </div>
             
@@ -437,7 +437,7 @@ export default function HomePage() {
                     <h4 className="text-lg font-semibold text-slate-900 mb-2">Priya Sharma</h4>
                     <p className="text-sm text-gray-600 mb-3">CEO, Learnify</p>
                     <p className="text-gray-700 italic">
-                      &quot;The Fund for Future Initiative was a game-changer for us. The funding and mentorship from HP helped us launch our ed-tech platform and reach our first 1,000 users within 6 months.&quot;
+                      &#34;The Fund for Future Initiative was a game-changer for us. The funding and mentorship from HP helped us launch our ed-tech platform and reach our first 1,000 users within 6 months.&#34;
                     </p>
                   </div>
                 </div>
@@ -450,7 +450,7 @@ export default function HomePage() {
                     <h4 className="text-lg font-semibold text-slate-900 mb-2">Rahul Verma</h4>
                     <p className="text-sm text-gray-600 mb-3">Founder, AgriConnect</p>
                     <p className="text-gray-700 italic">
-                      &quot;Coming from a small town, I never imagined getting this kind of support. HP&apos;s belief in our vision for a sustainable agriculture startup was incredible and helped us scale to 5 states.&quot;
+                      &#34;Coming from a small town, I never imagined getting this kind of support. HP&#39;s belief in our vision for a sustainable agriculture startup was incredible and helped us scale to 5 states.&#34;
                     </p>
                   </div>
                 </div>
