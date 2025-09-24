@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/constants';
@@ -22,10 +23,12 @@ export const Header: React.FC = () => {
           {/* Logo and Brand */}
           <Link href={ROUTES.HOME} className="flex items-center space-x-4 group">
             <div className="relative">
-              <img 
+              <Image 
                 src="https://upload.wikimedia.org/wikipedia/commons/0/05/HP_logo_2025.svg" 
                 alt="HP Logo" 
-                className="h-10 w-auto transition-all duration-300 group-hover:scale-105 filter drop-shadow-sm"
+                width={40}
+                height={40}
+                className="transition-all duration-300 group-hover:scale-105 filter drop-shadow-sm"
               />
               <div className="absolute -inset-1 bg-blue-600 opacity-0 group-hover:opacity-10 rounded-lg transition-opacity duration-300"></div>
             </div>

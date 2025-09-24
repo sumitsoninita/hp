@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { ROUTES } from '@/constants'
 
@@ -28,17 +29,19 @@ export default function HomePage() {
         <div className="container mx-auto px-6 py-20 relative z-10">
           <div className="text-center">
             <div className="flex justify-center mb-8">
-              <img 
+              <Image 
                 src="https://upload.wikimedia.org/wikipedia/commons/0/05/HP_logo_2025.svg" 
                 alt="HP Logo" 
-                className="h-16 w-auto filter brightness-0 invert"
+                width={64}
+                height={64}
+                className="filter brightness-0 invert"
               />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
               Fueling Dreams <span className="text-blue-400">Beyond Boundaries</span>
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              HP India's 'Fund for Future' is empowering the next generation of innovators from Tier 2 & 3 colleges to build the future.
+              HP India&apos;s &apos;Fund for Future&apos; is empowering the next generation of innovators from Tier 2 & 3 colleges to build the future.
             </p>
             <div className="flex justify-center space-x-4">
               <Link 
@@ -429,12 +432,12 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-start space-x-4">
-                  <img src="https://picsum.photos/60/60?grayscale" alt="Priya Sharma" className="w-15 h-15 rounded-full"/>
+                  <Image src="https://picsum.photos/60/60?grayscale" alt="Priya Sharma" width={60} height={60} className="rounded-full"/>
                   <div className="flex-1">
                     <h4 className="text-lg font-semibold text-slate-900 mb-2">Priya Sharma</h4>
                     <p className="text-sm text-gray-600 mb-3">CEO, Learnify</p>
                     <p className="text-gray-700 italic">
-                      "The Fund for Future Initiative was a game-changer for us. The funding and mentorship from HP helped us launch our ed-tech platform and reach our first 1,000 users within 6 months."
+                      &quot;The Fund for Future Initiative was a game-changer for us. The funding and mentorship from HP helped us launch our ed-tech platform and reach our first 1,000 users within 6 months.&quot;
                     </p>
                   </div>
                 </div>
@@ -442,12 +445,12 @@ export default function HomePage() {
               
               <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-start space-x-4">
-                  <img src="https://picsum.photos/60/61?grayscale" alt="Rahul Verma" className="w-15 h-15 rounded-full"/>
+                  <Image src="https://picsum.photos/60/61?grayscale" alt="Rahul Verma" width={60} height={60} className="rounded-full"/>
                   <div className="flex-1">
                     <h4 className="text-lg font-semibold text-slate-900 mb-2">Rahul Verma</h4>
                     <p className="text-sm text-gray-600 mb-3">Founder, AgriConnect</p>
                     <p className="text-gray-700 italic">
-                      "Coming from a small town, I never imagined getting this kind of support. HP's belief in our vision for a sustainable agriculture startup was incredible and helped us scale to 5 states."
+                      &quot;Coming from a small town, I never imagined getting this kind of support. HP&apos;s belief in our vision for a sustainable agriculture startup was incredible and helped us scale to 5 states.&quot;
                     </p>
                   </div>
                 </div>

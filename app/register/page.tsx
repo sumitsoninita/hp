@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { addUser, getUserByEmail } from '@/services/storageService'
 import { UserRole } from '@/types'
 import { ROUTES } from '@/constants'
@@ -69,10 +70,12 @@ export default function RegisterPage() {
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <img 
+                <Image 
                   src="https://upload.wikimedia.org/wikipedia/commons/0/05/HP_logo_2025.svg" 
                   alt="HP Logo" 
-                  className="h-16 w-auto filter brightness-0 invert"
+                  width={64}
+                  height={64}
+                  className="filter brightness-0 invert"
                 />
                 <div className="absolute -inset-2 bg-green-600/20 rounded-full blur-lg"></div>
               </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,10 +11,12 @@ export const Footer: React.FC = () => {
           {/* HP Branding Section */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              <img 
+              <Image 
                 src="https://upload.wikimedia.org/wikipedia/commons/0/05/HP_logo_2025.svg" 
                 alt="HP Logo" 
-                className="h-8 w-auto mr-3"
+                width={32}
+                height={32}
+                className="mr-3"
               />
               <div>
                 <h3 className="text-lg font-bold text-gray-900">Fund for Future</h3>
@@ -21,7 +24,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-4 max-w-md">
-              HP's Fund for Future initiative is dedicated to nurturing the next generation of innovators and entrepreneurs. 
+              HP&apos;s Fund for Future initiative is dedicated to nurturing the next generation of innovators and entrepreneurs. 
               We provide seed funding, mentorship, and resources to help students turn their ideas into reality.
             </p>
             <div className="flex space-x-3">

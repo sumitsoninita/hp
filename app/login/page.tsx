@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useAuth } from '@/hooks/useAuth'
 import { ROUTES } from '@/constants'
 import { UserRole } from '@/types'
@@ -59,10 +60,12 @@ export default function LoginPage() {
           <div className="text-center">
             <div className="flex justify-center mb-4">
               <div className="relative">
-                <img 
+                <Image 
                   src="https://upload.wikimedia.org/wikipedia/commons/0/05/HP_logo_2025.svg" 
                   alt="HP Logo" 
-                  className="h-12 w-auto filter brightness-0 invert"
+                  width={48}
+                  height={48}
+                  className="filter brightness-0 invert"
                 />
                 <div className="absolute -inset-2 bg-blue-600/20 rounded-full blur-lg"></div>
               </div>
