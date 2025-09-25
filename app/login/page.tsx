@@ -192,22 +192,78 @@ export default function LoginPage() {
             </form>
 
             {/* Quick Access Info */}
-            <div className="mt-6 pt-4 border-t border-white/20">
+            <div className="mt-6 pt-6 border-t border-white/20">
               <div className="text-center">
-                <p className="text-blue-100 text-sm mb-4">
-                  Quick Access Credentials
-                </p>
+                {/* Enhanced Header */}
+                <div className="mb-6">
+                  <div className="inline-flex items-center justify-center w-full mb-3">
+                    <div className="flex items-center space-x-3 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-sm rounded-full px-4 py-2 border border-yellow-400/30">
+                      <svg className="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span className="text-yellow-100 font-bold text-base">
+                        Quick Access Credentials
+                      </span>
+                      <svg className="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-blue-200 text-sm font-medium">
+                    Use these credentials for quick testing access
+                  </p>
+                </div>
+
+                {/* Enhanced Credential Boxes */}
                 <div className="grid grid-cols-2 gap-4 text-xs">
-                  <div className="bg-white/5 rounded-lg p-3">
-                    <p className="text-white font-semibold mb-1">Student</p>
-                    <p className="text-blue-200">student@test.com</p>
-                    <p className="text-blue-200">student123</p>
+                  <div 
+                    onClick={() => {
+                      setEmail('student@test.com');
+                      setPassword('student123');
+                    }}
+                    className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-sm rounded-xl p-4 border-2 border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"
+                  >
+                    <div className="flex items-center justify-center mb-3">
+                      <div className="bg-blue-500/30 rounded-full p-2">
+                        <svg className="w-4 h-4 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-white font-bold text-sm mb-2 text-center">Student Account</p>
+                    <div className="space-y-1">
+                      <p className="text-blue-100 font-medium">Email: student@test.com</p>
+                      <p className="text-blue-100 font-medium">Password: student123</p>
+                    </div>
                   </div>
-                  <div className="bg-white/5 rounded-lg p-3">
-                    <p className="text-white font-semibold mb-1">Admin</p>
-                    <p className="text-blue-200">admin@test.com</p>
-                    <p className="text-blue-200">admin123</p>
+                  
+                  <div 
+                    onClick={() => {
+                      setEmail('admin@test.com');
+                      setPassword('admin123');
+                    }}
+                    className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 backdrop-blur-sm rounded-xl p-4 border-2 border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg cursor-pointer"
+                  >
+                    <div className="flex items-center justify-center mb-3">
+                      <div className="bg-purple-500/30 rounded-full p-2">
+                        <svg className="w-4 h-4 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-white font-bold text-sm mb-2 text-center">Admin Account</p>
+                    <div className="space-y-1">
+                      <p className="text-purple-100 font-medium">Email: admin@test.com</p>
+                      <p className="text-purple-100 font-medium">Password: admin123</p>
+                    </div>
                   </div>
+                </div>
+
+                {/* Additional Info */}
+                <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                  <p className="text-blue-200 text-xs">
+                    💡 Click on any credential box to auto-fill the login form
+                  </p>
                 </div>
               </div>
             </div>

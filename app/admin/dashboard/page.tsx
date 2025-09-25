@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState, useEffect, useMemo } from 'react'
-import { getApplications, updateApplicationStatus, addEvaluationNoteToApplication, deleteApplication, clearAllData } from '@/services/storageService'
-import { StudentApplication, ApplicationStatus, EvaluationNote, UserRole } from '@/types'
+import { getApplications, updateApplicationStatus, addEvaluationNoteToApplication, deleteApplication, clearAllData, addMeeting, addNotification } from '@/services/storageService'
+import { StudentApplication, ApplicationStatus, EvaluationNote, UserRole, MeetingSchedule, StudentNotification } from '@/types'
 import { useAuth } from '@/hooks/useAuth'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 
@@ -11,7 +11,8 @@ const MeetSchedulingModal: React.FC<{
     application: StudentApplication | null;
     isOpen: boolean;
     onClose: () => void;
-}> = ({ application, isOpen, onClose }) => {
+    onMeetingScheduled: () => void;
+}> = ({ application, isOpen, onClose, onMeetingScheduled }) => {
     const [meetDetails, setMeetDetails] = useState({
         title: '',
         description: '',
@@ -21,50 +22,92 @@ const MeetSchedulingModal: React.FC<{
         agenda: ''
     });
 
+    // Check if form is valid
+    const isFormValid = meetDetails.title.trim() !== '' && meetDetails.date !== '' && meetDetails.time !== '';
+
+    const { user } = useAuth();
+
     const handleScheduleMeet = () => {
-        if (!application || !meetDetails.title || !meetDetails.date || !meetDetails.time) {
+        if (!application || !meetDetails.title || !meetDetails.date || !meetDetails.time || !user) {
             alert('Please fill in all required fields');
             return;
         }
 
-        // Create Google Meet link (simulated)
-        const meetLink = `https://meet.google.com/${Math.random().toString(36).substr(2, 9)}`;
-        
-        // Create calendar event details
-        const eventDetails = {
-            title: meetDetails.title,
-            description: `Meeting with ${application.studentName} - ${application.startupName}\n\n${meetDetails.description}\n\nAgenda:\n${meetDetails.agenda}\n\nGoogle Meet Link: ${meetLink}`,
-            date: meetDetails.date,
-            time: meetDetails.time,
-            duration: meetDetails.duration,
-            meetLink: meetLink
-        };
+        try {
+            // Create Google Meet link (simulated)
+            const meetLink = `https://meet.google.com/${Math.random().toString(36).substr(2, 9)}`;
+            
+            // Save meeting to storage
+            const newMeeting = addMeeting({
+                applicationId: application.id,
+                studentId: application.studentId,
+                studentName: application.studentName,
+                startupName: application.startupName,
+                title: meetDetails.title,
+                description: meetDetails.description,
+                date: meetDetails.date,
+                time: meetDetails.time,
+                duration: meetDetails.duration,
+                agenda: meetDetails.agenda,
+                meetLink: meetLink,
+                adminId: user.id,
+                adminName: user.fullName,
+                status: 'scheduled'
+            });
 
-        // Simulate sending calendar invite
-        const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${meetDetails.date.replace(/-/g, '')}T${meetDetails.time.replace(':', '')}00Z/${meetDetails.date.replace(/-/g, '')}T${(parseInt(meetDetails.time.split(':')[0]) + parseInt(meetDetails.duration) / 60).toString().padStart(2, '0')}${meetDetails.time.split(':')[1]}00Z&details=${encodeURIComponent(eventDetails.description)}`;
-        
-        // Open Google Calendar
-        window.open(calendarUrl, '_blank');
-        
-        // Show success message
-        alert(`Google Meet scheduled successfully!\n\nMeeting Link: ${meetLink}\n\nCalendar event has been opened for you to confirm.`);
-        
-        // Reset form and close modal
-        setMeetDetails({
-            title: '',
-            description: '',
-            date: '',
-            time: '',
-            duration: '30',
-            agenda: ''
-        });
-        onClose();
+            // Create notification for student
+            addNotification({
+                studentId: application.studentId,
+                type: 'meeting_scheduled',
+                title: 'Meeting Scheduled - ' + application.startupName,
+                message: `A Google Meet has been scheduled for your startup "${application.startupName}". Meeting: ${meetDetails.title} on ${new Date(meetDetails.date).toLocaleDateString()} at ${meetDetails.time}. Google Meet Link: ${meetLink}`,
+                applicationId: application.id,
+                meetingId: newMeeting.id,
+                isRead: false
+            });
+
+            // Create calendar event details
+            const eventDetails = {
+                title: meetDetails.title,
+                description: `Meeting with ${application.studentName} - ${application.startupName}\n\n${meetDetails.description}\n\nAgenda:\n${meetDetails.agenda}\n\nGoogle Meet Link: ${meetLink}`,
+                date: meetDetails.date,
+                time: meetDetails.time,
+                duration: meetDetails.duration,
+                meetLink: meetLink
+            };
+
+            // Simulate sending calendar invite
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${meetDetails.date.replace(/-/g, '')}T${meetDetails.time.replace(':', '')}00Z/${meetDetails.date.replace(/-/g, '')}T${(parseInt(meetDetails.time.split(':')[0]) + parseInt(meetDetails.duration) / 60).toString().padStart(2, '0')}${meetDetails.time.split(':')[1]}00Z&details=${encodeURIComponent(eventDetails.description)}`;
+            
+            // Open Google Calendar
+            window.open(calendarUrl, '_blank');
+            
+            // Show success message
+            alert(`Google Meet scheduled successfully!\n\nMeeting Link: ${meetLink}\n\nCalendar event has been opened for you to confirm.\n\nStudent has been notified about the meeting.`);
+            
+            // Reset form and close modal
+            setMeetDetails({
+                title: '',
+                description: '',
+                date: '',
+                time: '',
+                duration: '30',
+                agenda: ''
+            });
+            
+            // Notify parent component
+            onMeetingScheduled();
+            onClose();
+        } catch (error) {
+            console.error('Error scheduling meeting:', error);
+            alert('Failed to schedule meeting. Please try again.');
+        }
     };
 
     if (!isOpen || !application) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[9999] p-4">
             <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-6">
@@ -86,7 +129,7 @@ const MeetSchedulingModal: React.FC<{
                 </div>
 
                 {/* Content */}
-                <div className="p-6 max-h-[70vh] overflow-y-auto">
+                <div className="p-6 max-h-[60vh] overflow-y-auto">
                     <div className="space-y-6">
                         {/* Meeting Title */}
                         <div>
@@ -188,19 +231,29 @@ const MeetSchedulingModal: React.FC<{
                 </div>
 
                 {/* Footer */}
-                <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
-                    <button
-                        onClick={onClose}
-                        className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        onClick={handleScheduleMeet}
-                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
-                    >
-                        Schedule Google Meet
-                    </button>
+                <div className="bg-gray-50 px-6 py-4 flex justify-between items-center border-t border-gray-200">
+                    <div className="text-sm text-gray-600">
+                        {isFormValid ? '✅ Ready to schedule meeting' : '⚠️ Fill in the required fields (Title, Date, Time)'}
+                    </div>
+                    <div className="flex space-x-3">
+                        <button
+                            onClick={onClose}
+                            className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors font-semibold"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={handleScheduleMeet}
+                            disabled={!isFormValid}
+                            className={`px-6 py-2 rounded-lg font-semibold shadow-md transition-all ${
+                                isFormValid 
+                                    ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-lg transform hover:scale-105' 
+                                    : 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                            }`}
+                        >
+                            {isFormValid ? '🎯 Schedule Google Meet' : '⚠️ Fill Required Fields'}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -974,6 +1027,10 @@ export default function AdminDashboard() {
                     application={meetModal.application}
                     isOpen={meetModal.isOpen}
                     onClose={() => setMeetModal({isOpen: false, application: null})}
+                    onMeetingScheduled={() => {
+                        // Refresh applications or perform any necessary updates
+                        setApplications(getApplications());
+                    }}
                 />
             </div>
         </ProtectedRoute>

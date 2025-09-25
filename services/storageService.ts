@@ -1,8 +1,10 @@
 
-import { User, UserRole, StudentApplication, ApplicationStatus, EvaluationNote } from '@/types';
+import { User, UserRole, StudentApplication, ApplicationStatus, EvaluationNote, MeetingSchedule, StudentNotification } from '@/types';
 
 const USERS_KEY = 'fff_users';
 const APPLICATIONS_KEY = 'fff_applications';
+const MEETINGS_KEY = 'fff_meetings';
+const NOTIFICATIONS_KEY = 'fff_notifications';
 
 // Check if we're in the browser
 const isBrowser = typeof window !== 'undefined';
@@ -143,9 +145,102 @@ export const clearAllData = (): void => {
     if (!isBrowser) return;
     localStorage.removeItem(USERS_KEY);
     localStorage.removeItem(APPLICATIONS_KEY);
+    localStorage.removeItem(MEETINGS_KEY);
+    localStorage.removeItem(NOTIFICATIONS_KEY);
     // Re-seed the basic users
     seedAdmin();
     seedStudent();
+};
+
+// Meeting Functions
+export const getMeetings = (): MeetingSchedule[] => {
+    if (!isBrowser) return [];
+    const meetings = localStorage.getItem(MEETINGS_KEY);
+    return meetings ? JSON.parse(meetings) : [];
+};
+
+export const getMeetingsByApplication = (applicationId: string): MeetingSchedule[] => {
+    return getMeetings().filter(meeting => meeting.applicationId === applicationId);
+};
+
+export const getMeetingsByStudent = (studentId: string): MeetingSchedule[] => {
+    return getMeetings().filter(meeting => meeting.studentId === studentId);
+};
+
+export const addMeeting = (meeting: Omit<MeetingSchedule, 'id' | 'createdAt'>): MeetingSchedule => {
+    if (!isBrowser) throw new Error('Cannot add meeting on server side');
+    const meetings = getMeetings();
+    const newMeeting: MeetingSchedule = {
+        ...meeting,
+        id: `meeting_${Date.now()}`,
+        createdAt: new Date().toISOString()
+    };
+    meetings.push(newMeeting);
+    localStorage.setItem(MEETINGS_KEY, JSON.stringify(meetings));
+    return newMeeting;
+};
+
+export const updateMeetingStatus = (meetingId: string, status: 'scheduled' | 'completed' | 'cancelled'): MeetingSchedule | undefined => {
+    if (!isBrowser) return undefined;
+    const meetings = getMeetings();
+    const meetingIndex = meetings.findIndex(meeting => meeting.id === meetingId);
+    if (meetingIndex !== -1) {
+        meetings[meetingIndex].status = status;
+        localStorage.setItem(MEETINGS_KEY, JSON.stringify(meetings));
+        return meetings[meetingIndex];
+    }
+    return undefined;
+};
+
+// Notification Functions
+export const getNotifications = (): StudentNotification[] => {
+    if (!isBrowser) return [];
+    const notifications = localStorage.getItem(NOTIFICATIONS_KEY);
+    return notifications ? JSON.parse(notifications) : [];
+};
+
+export const getNotificationsByStudent = (studentId: string): StudentNotification[] => {
+    return getNotifications().filter(notification => notification.studentId === studentId);
+};
+
+export const getUnreadNotificationsByStudent = (studentId: string): StudentNotification[] => {
+    return getNotificationsByStudent(studentId).filter(notification => !notification.isRead);
+};
+
+export const addNotification = (notification: Omit<StudentNotification, 'id' | 'createdAt'>): StudentNotification => {
+    if (!isBrowser) throw new Error('Cannot add notification on server side');
+    const notifications = getNotifications();
+    const newNotification: StudentNotification = {
+        ...notification,
+        id: `notification_${Date.now()}`,
+        createdAt: new Date().toISOString()
+    };
+    notifications.push(newNotification);
+    localStorage.setItem(NOTIFICATIONS_KEY, JSON.stringify(notifications));
+    return newNotification;
+};
+
+export const markNotificationAsRead = (notificationId: string): StudentNotification | undefined => {
+    if (!isBrowser) return undefined;
+    const notifications = getNotifications();
+    const notificationIndex = notifications.findIndex(notification => notification.id === notificationId);
+    if (notificationIndex !== -1) {
+        notifications[notificationIndex].isRead = true;
+        localStorage.setItem(NOTIFICATIONS_KEY, JSON.stringify(notifications));
+        return notifications[notificationIndex];
+    }
+    return undefined;
+};
+
+export const markAllNotificationsAsRead = (studentId: string): void => {
+    if (!isBrowser) return;
+    const notifications = getNotifications();
+    notifications.forEach(notification => {
+        if (notification.studentId === studentId && !notification.isRead) {
+            notification.isRead = true;
+        }
+    });
+    localStorage.setItem(NOTIFICATIONS_KEY, JSON.stringify(notifications));
 };
 
 // Migration function to fix existing applications with mismatched student IDs

@@ -51,3 +51,34 @@ export interface EvaluationNote {
   note: string;
   timestamp: string;
 }
+
+export interface MeetingSchedule {
+  id: string;
+  applicationId: string;
+  studentId: string;
+  studentName: string;
+  startupName: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  duration: string;
+  agenda: string;
+  meetLink: string;
+  adminId: string;
+  adminName: string;
+  status: 'scheduled' | 'completed' | 'cancelled';
+  createdAt: string;
+}
+
+export interface StudentNotification {
+  id: string;
+  studentId: string;
+  type: 'meeting_scheduled' | 'status_update' | 'general';
+  title: string;
+  message: string;
+  applicationId?: string;
+  meetingId?: string;
+  isRead: boolean;
+  createdAt: string;
+}
