@@ -60,42 +60,42 @@ export default function RegisterPage() {
       </div>
       
       {/* Floating Elements */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-green-500/10 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-20 left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 right-10 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
+      <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-16 h-16 sm:w-32 sm:h-32 bg-green-500/10 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute bottom-10 sm:bottom-20 left-10 sm:left-20 w-20 h-20 sm:w-40 sm:h-40 bg-purple-500/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 right-5 sm:right-10 w-12 h-12 sm:w-24 sm:h-24 bg-cyan-500/10 rounded-full blur-xl animate-pulse delay-500"></div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-2xl w-full space-y-6">
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="max-w-2xl w-full space-y-4 sm:space-y-6">
           {/* Header Section */}
           <div className="text-center">
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-3 sm:mb-6">
               <div className="relative">
                 <Image 
                   src="https://upload.wikimedia.org/wikipedia/commons/0/05/HP_logo_2025.svg" 
                   alt="HP Logo" 
-                  width={64}
-                  height={64}
-                  className="filter brightness-0 invert"
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 sm:w-16 sm:h-16 filter brightness-0 invert"
                 />
-                <div className="absolute -inset-2 bg-green-600/20 rounded-full blur-lg"></div>
+                <div className="absolute -inset-1 sm:-inset-2 bg-green-600/20 rounded-full blur-lg"></div>
               </div>
             </div>
-            <h1 className="text-4xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
               Join Fund for Future
             </h1>
-            <p className="text-blue-100 text-lg">
+            <p className="text-blue-100 text-sm sm:text-base lg:text-lg">
               Start your entrepreneurial journey with HP India
             </p>
-            <div className="mt-4 flex justify-center">
-              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-white text-sm font-medium">Secure Registration</span>
+            <div className="mt-3 sm:mt-4 flex justify-center">
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-white text-xs sm:text-sm font-medium">Secure Registration</span>
               </div>
             </div>
           </div>
 
           {/* Registration Form */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-8">
+          <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-4 sm:p-6 lg:p-8">
             {error && (
               <div className="mb-6 bg-red-500/20 border border-red-500/30 rounded-xl p-4">
                 <div className="flex items-center">
@@ -118,8 +118,8 @@ export default function RegisterPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Full Name */}
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-semibold text-white mb-2">
@@ -137,7 +137,7 @@ export default function RegisterPage() {
                       type="text"
                       autoComplete="name"
                       required
-                      className="block w-full pl-10 pr-3 py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="block w-full pl-10 pr-3 py-2.5 sm:py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="Enter your full name"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
@@ -162,7 +162,7 @@ export default function RegisterPage() {
                       type="text"
                       autoComplete="organization"
                       required
-                      className="block w-full pl-10 pr-3 py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="block w-full pl-10 pr-3 py-2.5 sm:py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="Enter your college name"
                       value={college}
                       onChange={(e) => setCollege(e.target.value)}
@@ -188,7 +188,7 @@ export default function RegisterPage() {
                     type="email"
                     autoComplete="email"
                     required
-                    className="block w-full pl-10 pr-3 py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    className="block w-full pl-10 pr-3 py-2.5 sm:py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                     placeholder="your.email@college.edu"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -213,7 +213,7 @@ export default function RegisterPage() {
                     type={showPassword ? "text" : "password"}
                     autoComplete="new-password"
                     required
-                    className="block w-full pl-10 pr-12 py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    className="block w-full pl-10 pr-12 py-2.5 sm:py-3 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                     placeholder="Create a strong password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -286,12 +286,12 @@ export default function RegisterPage() {
             </form>
 
             {/* Benefits Section */}
-            <div className="mt-8 pt-6 border-t border-white/20">
+            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/20">
               <div className="text-center">
-                <p className="text-blue-100 text-sm mb-4">
+                <p className="text-blue-100 text-xs sm:text-sm mb-3 sm:mb-4">
                   What you get with Fund for Future
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 text-xs">
                   <div className="bg-white/5 rounded-lg p-3">
                     <div className="text-green-400 text-lg mb-1">💰</div>
                     <p className="text-white font-semibold mb-1">Seed Funding</p>
@@ -314,7 +314,7 @@ export default function RegisterPage() {
 
           {/* Footer */}
           <div className="text-center">
-            <p className="text-blue-100 text-sm">
+            <p className="text-blue-100 text-xs sm:text-sm">
               Already have an account?{' '}
               <Link 
                 href={ROUTES.LOGIN} 
@@ -323,7 +323,7 @@ export default function RegisterPage() {
                 Sign in here
               </Link>
             </p>
-            <div className="mt-4 flex justify-center space-x-6 text-xs text-blue-200">
+            <div className="mt-3 sm:mt-4 flex flex-wrap justify-center gap-3 sm:gap-6 text-xs text-blue-200">
               <span>🎓 Student Focused</span>
               <span>💡 Innovation Driven</span>
               <span>🌍 Future Ready</span>
