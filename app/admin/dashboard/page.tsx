@@ -613,20 +613,20 @@ export default function AdminDashboard() {
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 text-white shadow-2xl">
-                    <div className="container mx-auto px-6 py-8">
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
-                                <p className="text-blue-100 text-lg">Manage and review startup applications</p>
+                    <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+                        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center space-y-4 lg:space-y-0">
+                            <div className="text-center lg:text-left">
+                                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Admin Dashboard</h1>
+                                <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Manage and review startup applications</p>
                             </div>
-                            <div className="flex items-center space-x-6">
-                                <div className="text-right bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                                    <p className="text-blue-200 text-sm">Total Applications</p>
-                                    <p className="text-3xl font-bold text-white">{applications.length}</p>
+                            <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6">
+                                <div className="text-center sm:text-right bg-white/10 backdrop-blur-sm rounded-xl p-3 sm:p-4 w-full sm:w-auto">
+                                    <p className="text-blue-200 text-xs sm:text-sm">Total Applications</p>
+                                    <p className="text-2xl sm:text-3xl font-bold text-white">{applications.length}</p>
                                 </div>
                                 <button 
                                     onClick={handleClearAllData}
-                                    className="bg-red-600 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                                    className="bg-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-semibold hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 w-full sm:w-auto"
                                 >
                                     Clear All Data
                                 </button>
@@ -635,13 +635,13 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
-                <div className="container mx-auto px-6 py-8">
+                <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
                     {/* Tab Navigation */}
-                    <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-xl border border-white/20 mb-8">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-xl border border-white/20 mb-6 sm:mb-8">
                         <div className="flex">
                             <button
                                 onClick={() => setActiveTab('applications')}
-                                className={`flex-1 px-6 py-4 text-sm font-semibold transition-all rounded-tl-xl ${
+                                className={`flex-1 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold transition-all rounded-tl-xl ${
                                     activeTab === 'applications'
                                         ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
                                         : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50'
@@ -651,7 +651,7 @@ export default function AdminDashboard() {
                             </button>
                             <button
                                 onClick={() => setActiveTab('shortlisted')}
-                                className={`flex-1 px-6 py-4 text-sm font-semibold transition-all rounded-tr-xl ${
+                                className={`flex-1 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold transition-all rounded-tr-xl ${
                                     activeTab === 'shortlisted'
                                         ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
                                         : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50'
@@ -663,7 +663,7 @@ export default function AdminDashboard() {
                     </div>
 
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-6 sm:mb-8">
                         <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-xl p-6 shadow-xl border border-blue-500/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                             <div className="flex items-center">
                                 <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white mr-4">
@@ -739,13 +739,13 @@ export default function AdminDashboard() {
                     {activeTab === 'applications' && (
                         <>
                             {/* Filter Tabs */}
-                            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl border border-white/20 mb-8">
-                                <div className="p-6 border-b border-gray-200/50">
-                                    <h2 className="text-xl font-bold text-slate-800 mb-4">Filter Applications</h2>
-                                    <div className="flex flex-wrap gap-3">
+                            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-xl border border-white/20 mb-6 sm:mb-8">
+                                <div className="p-4 sm:p-6 border-b border-gray-200/50">
+                                    <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-3 sm:mb-4">Filter Applications</h2>
+                                    <div className="flex flex-wrap gap-2 sm:gap-3">
                                         <button 
                                             onClick={() => setFilter('All')} 
-                                            className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
+                                            className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                                                 filter === 'All' 
                                                     ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg transform scale-105' 
                                                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:shadow-md'
@@ -757,7 +757,7 @@ export default function AdminDashboard() {
                                             <button 
                                                 key={status} 
                                                 onClick={() => setFilter(status)} 
-                                                className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
+                                                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                                                     filter === status 
                                                         ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg transform scale-105' 
                                                         : 'bg-slate-100 text-slate-700 hover:bg-blue-100 hover:text-blue-700 hover:shadow-md'
