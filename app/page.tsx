@@ -45,10 +45,10 @@ export default function HomePage() {
             </p>
             <div className="flex justify-center space-x-4">
               <Link 
-                href={ROUTES.REGISTER} 
+                href={ROUTES.LOGIN} 
                 className="bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                Apply as Student
+                Student Login
               </Link>
               <Link 
                 href={ROUTES.LOGIN} 
